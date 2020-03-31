@@ -2,12 +2,12 @@
 # -*- coding:utf-8 -*-
 __author__ = "HSZ"
 
+
 SERVER_PORT = 8800
 
 SQLALCHEMY_ECHO = False
 
-SQLALCHEMY_DATABASE_URI = 'mysql://root:123456@127.0.0.1/flask_train'
+SQLALCHEMY_DATABASE_URI = 'mysql://root:123456@127.0.0.1/flask_train?charset=utf8mb4'
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-SQLALCHEMY_ENCODEING = "UTF-8"
+SQLALCHEMY_ENCODING = "utf8mb4"

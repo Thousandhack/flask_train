@@ -4,3 +4,5 @@
 
 # python manager.py runserver
 
+# ModuleNotFoundError: No module named 'MySQLdb' 报错
+# pip install mysqlclient

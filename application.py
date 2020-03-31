@@ -26,11 +26,14 @@ class Application(Flask):
         db.init_app(self)  # 初始化
 
 
+# import pymysql
+#
+# pymysql.install_as_MySQLdb()
+
 db = SQLAlchemy()
 app = Application(__name__, template_folder=os.getcwd() + "/web/templates/", root_path=os.getcwd())
 app.config['JSON_AS_ASCII'] = False  # 正常返回中文的配置
 manager = Manager(app)
-
 
 """
 函数模板

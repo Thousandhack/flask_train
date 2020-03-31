@@ -6,6 +6,8 @@ from flask import Blueprint, render_template
 from flask import request
 from flask import jsonify
 from common.models.user import User
+from common.libs.user.UserService import UserService
+
 # 给模块配置路由  index_user 不同模块命名不同
 route_user = Blueprint('index_user', __name__)
 
@@ -31,12 +33,17 @@ def login():
             resp['code'] = -1
             resp['msg'] = '登录失败，请输入正确的密码！'
             return jsonify(resp)
-
+        print(login_name)
+        print(login_pwd)
         user_info = User.query.filter_by(login_name=login_name).first()
-
         if not user_info:
             resp['code'] = -1
-            resp['msg'] = '请输入正确的登录用户名和密码！'
+            resp['msg'] = '请输入正确的登录用户名和密码1！'
+            return jsonify(resp)
+        # 密码的判断
+        if user_info.login_pwd != UserService.genPwd(login_pwd,user_info.login_salt):
+            resp['code'] = -1
+            resp['msg'] = '请输入正确的登录用户名和密码2！'
             return jsonify(resp)
         return "%s %s" % (login_name, login_pwd)
 
