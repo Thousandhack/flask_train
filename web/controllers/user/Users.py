@@ -2,12 +2,12 @@
 # -*- coding:utf-8 -*-
 __author__ = "hsz"
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,make_response
 from flask import request
 from flask import jsonify
 from common.models.user import User
 from common.libs.user.UserService import UserService
-
+import json
 # 给模块配置路由  index_user 不同模块命名不同
 route_user = Blueprint('index_user', __name__)
 
@@ -45,7 +45,11 @@ def login():
             resp['code'] = -1
             resp['msg'] = '请输入正确的登录用户名和密码2！'
             return jsonify(resp)
-        return "%s %s" % (login_name, login_pwd)
+
+        response = make_response(json.dumps({'code': 200, 'msg': '登录成功~~'}))
+
+        return response
+        # return "%s %s" % (login_name, login_pwd)
 
 
 @route_user.route("/edit")
